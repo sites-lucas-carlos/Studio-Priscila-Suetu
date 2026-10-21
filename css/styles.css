@@ -454,7 +454,7 @@ h2 {
 .hero-media {
   justify-self: center;
   width: min(100%, 320px, calc(42svh * 0.75));
-  padding: 22px 22px 0;
+  padding: 24px; /* room for the arch outlines, which sit 24px outside the photo */
 }
 
 /* Two thin concentric outlines echo the arcs around the team portraits on Instagram. */
@@ -484,16 +484,8 @@ h2 {
   object-position: 50% 22%;
 }
 
-.hero-media figcaption {
-  margin-top: 34px;
-  text-align: center;
-  color: var(--muted);
-  font-size: 0.92rem;
-}
-
 @media (max-width: 899px) {
-  .hero-grid { gap: 32px; }
-  .hero-media figcaption { margin-inline: -32px; }
+  .hero-grid { gap: 8px; }
 }
 
 @media (min-width: 900px) {
@@ -503,9 +495,8 @@ h2 {
   }
   .hero-media {
     width: min(100%, 440px, calc(min(64svh, 640px) * 0.75));
-    padding: 26px 26px 0;
+    padding: 26px;
   }
-  .hero-media figcaption { margin-top: 40px; }
   .hero::before { background: radial-gradient(44% 46% at 24% 40%, rgba(237, 180, 156, 0.32), transparent 72%); }
 }
 
