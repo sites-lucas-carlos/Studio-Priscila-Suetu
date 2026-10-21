@@ -450,11 +450,12 @@ h2 {
   margin-top: 32px;
 }
 
-/* On phones the photo comes first, so it stays compact enough for the headline to show on the first screen. */
+/* On phones the photo comes first and fills most of the screen width;
+   the svh cap only bites on short screens such as a phone in landscape. */
 .hero-media {
   justify-self: center;
-  width: min(100%, 320px, calc(42svh * 0.75));
-  padding: 24px; /* room for the arch outlines, which sit 24px outside the photo */
+  width: min(100%, 440px, calc(70svh * 0.75 + 32px));
+  padding: 16px; /* room for the arch outlines, which sit 16px outside the photo on phones */
 }
 
 /* Two thin concentric outlines echo the arcs around the team portraits on Instagram. */
@@ -467,8 +468,8 @@ h2 {
   border: 1px solid var(--accent);
   pointer-events: none;
 }
-.arch-wrap::before { inset: -12px; opacity: 0.45; }
-.arch-wrap::after { inset: -24px; opacity: 0.2; }
+.arch-wrap::before { inset: -8px; opacity: 0.45; }
+.arch-wrap::after { inset: -16px; opacity: 0.2; }
 
 .arch {
   aspect-ratio: 3 / 4;
@@ -485,7 +486,8 @@ h2 {
 }
 
 @media (max-width: 899px) {
-  .hero-grid { gap: 8px; }
+  .hero { padding-top: calc(var(--header-h) + var(--header-top) + 16px); }
+  .hero-grid { gap: 12px; }
 }
 
 @media (min-width: 900px) {
@@ -497,6 +499,8 @@ h2 {
     width: min(100%, 440px, calc(min(64svh, 640px) * 0.75));
     padding: 26px;
   }
+  .arch-wrap::before { inset: -12px; }
+  .arch-wrap::after { inset: -24px; }
   .hero::before { background: radial-gradient(44% 46% at 24% 40%, rgba(237, 180, 156, 0.32), transparent 72%); }
 }
 
