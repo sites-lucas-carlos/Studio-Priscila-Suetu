@@ -411,7 +411,7 @@ h2 {
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: radial-gradient(48% 42% at 78% 34%, rgba(237, 180, 156, 0.32), transparent 72%);
+  background: radial-gradient(70% 34% at 50% 22%, rgba(237, 180, 156, 0.3), transparent 72%);
   pointer-events: none;
 }
 
@@ -450,10 +450,11 @@ h2 {
   margin-top: 32px;
 }
 
+/* On phones the photo comes first, so it stays compact enough for the headline to show on the first screen. */
 .hero-media {
   justify-self: center;
-  width: min(100%, 440px, calc(min(64svh, 640px) * 0.75));
-  padding: 26px 26px 0;
+  width: min(100%, 320px, calc(42svh * 0.75));
+  padding: 22px 22px 0;
 }
 
 /* Two thin concentric outlines echo the arcs around the team portraits on Instagram. */
@@ -484,17 +485,28 @@ h2 {
 }
 
 .hero-media figcaption {
-  margin-top: 40px;
+  margin-top: 34px;
   text-align: center;
   color: var(--muted);
   font-size: 0.92rem;
 }
 
+@media (max-width: 899px) {
+  .hero-grid { gap: 32px; }
+  .hero-media figcaption { margin-inline: -32px; }
+}
+
 @media (min-width: 900px) {
   .hero-grid {
-    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
     gap: clamp(40px, 6vw, 96px);
   }
+  .hero-media {
+    width: min(100%, 440px, calc(min(64svh, 640px) * 0.75));
+    padding: 26px 26px 0;
+  }
+  .hero-media figcaption { margin-top: 40px; }
+  .hero::before { background: radial-gradient(44% 46% at 24% 40%, rgba(237, 180, 156, 0.32), transparent 72%); }
 }
 
 /* Load-in choreography for the first screen. */

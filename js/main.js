@@ -47,16 +47,15 @@ new IntersectionObserver(([entry]) => {
   header.classList.toggle("is-scrolled", !entry.isIntersecting);
 }).observe(document.querySelector(".top-sentinel"));
 
-// Phone booking bar: shown once the hero buttons scroll away, hidden near the booking panel and footer.
+// Phone booking bar: shown whenever the hero buttons are off screen (the hero photo comes first on
+// phones, so that includes the first screen), hidden while the booking panel or footer is in view.
 const stickyBar = document.querySelector(".sticky-cta");
 const stickyLinks = stickyBar.querySelectorAll("a");
 const blockers = new Map();
 
 const stickyObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => blockers.set(entry.target, entry.isIntersecting));
-  const heroPassed = heroActions.getBoundingClientRect().bottom < 0;
-  const blocked = [...blockers.values()].some(Boolean);
-  const visible = heroPassed && !blocked;
+  const visible = ![...blockers.values()].some(Boolean);
   stickyBar.classList.toggle("is-visible", visible);
   stickyBar.setAttribute("aria-hidden", String(!visible));
   stickyLinks.forEach((link) => (visible ? link.removeAttribute("tabindex") : link.setAttribute("tabindex", "-1")));
